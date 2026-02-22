@@ -18,10 +18,11 @@
                 <h1>MonoDLC <span>1.16.5 only</span></h1>
             </div>
             <div class="nav-links">
-                <a href="#">Главная</a>
+                <a href="index.html">Главная</a>
                 <a href="obhod.html">Обход</a>
-                <a href="#">Цены</a>
-                <a href="#">Telegram</a>
+                <!-- Добавляем ссылку на якорь #pricing -->
+                <a href="#pricing">Цены</a>
+                <a href="https://t.me/monodlc">Telegram</a>
             </div>
         </nav>
 
@@ -46,7 +47,7 @@
             <div class="stat-circle"><span class="stat-number">#1</span><div class="stat-label">на 1.16.5</div></div>
         </div>
 
-        <!-- === НОВЫЙ ТЕКСТ (КОПИРАЙТИНГ) === -->
+        <!-- НОВЫЙ ТЕКСТ (КОПИРАЙТИНГ) -->
         <div class="intro-block">
             <p>Представляем вам новое поколение программного обеспечения, созданное для тех, кто не признает компромиссов. Наши обходчики (bypass) работают на опережение, обеспечивая полную невидимость для самых агрессивных систем защиты.</p>
             
@@ -100,8 +101,8 @@
             </ul>
         </div>
 
-        <!-- БЛОК С ТРЕМЯ КОЛОНКАМИ ЦЕН -->
-        <div class="pricing-title">
+        <!-- БЛОК С ТРЕМЯ КОЛОНКАМИ ЦЕН (ДОБАВЛЯЕМ ID="pricing") -->
+        <div id="pricing" class="pricing-title">
             <span>💎 Выбери тариф (1.16.5)</span>
         </div>
         <div class="pricing-sub">Доступ к закрытому каналу с читом и обновлениями</div>
@@ -146,7 +147,54 @@
         <div class="pricing-guarantee">
             <i class="fas fa-bolt"></i> После покупки клиента вы получаете доступ без лагов и задержки.
         </div>
+          <!-- ========== НОВЫЙ БЛОК: КОМАНДА MONODLC ========== -->
+          <div class="team-title">
+            <span>👥 Команда MonoDLC</span>
+        </div>
 
+        <div class="team-grid">
+            <!-- Карточка 1: monoless -->
+            <div class="team-card">
+                <div class="team-avatar">
+                    <i class="fas fa-user-astronaut"></i>
+                </div>
+                <h3>monoless</h3>
+                <div class="team-role">создатель чита</div>
+                <p>Главный архитектор ядра MonoCore. Отвечает за полную невидимость и обход SpookyTime.</p>
+                <div class="team-social">
+                    <a href="https://t.me/monodlc"><i class="fab fa-telegram"></i></a>
+                    
+                </div>
+            </div>
+
+            <!-- Карточка 2: serfer -->
+            <div class="team-card">
+                <div class="team-avatar">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>serfer</h3>
+                <div class="team-role">создатель сайта, бета-тестер</div>
+                <p>Разработал этот сайт и лично тестирует каждый билд на серверах с Spooky.</p>
+                <div class="team-social">
+                    <a href="https://t.me/monodlc"><i class="fab fa-telegram"></i></a>
+                    
+                </div>
+            </div>
+
+            <!-- Карточка 3: fameowner -->
+            <div class="team-card">
+                <div class="team-avatar">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>fameowner</h3>
+                <div class="team-role">создатель визуалов, бета-тестер</div>
+                <p>Отвечает за ESP, рендер и интерфейс. Делает чит не только мощным, но и красивым.</p>
+                <div class="team-social">
+                    <a href="https://t.me/monodlc"><i class="fab fa-telegram"></i></a>
+                    
+                </div>
+            </div>
+        </div>
         <!-- Кнопка Telegram с прямой ссылкой на t.me/monodlc -->
         <div id="telegram" class="telegram-section">
             <a href="https://t.me/monodlc" target="_blank" class="telegram-button">
@@ -160,8 +208,7 @@
             <div>© 2025 MonoDLC — обход SpookyTime.Funtime на версии 1.16.5</div>
             <div class="footer-links">
                 <a href="https://t.me/monodlc" target="_blank"><i class="fab fa-telegram"></i> t.me/monodlc</a>
-                <a href="#">Политика</a>
-                <a href="#">Поддержка</a>
+                <a href="https://t.me/monodlc">Поддержка</a>
             </div>
         </footer>
     </div>
@@ -181,7 +228,7 @@
         buyButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                alert('💳 Демо-режим: здесь будет переход на оплату. После покупки вы получите доступ без лагов и задержки.');
+                alert('Покупка на сайте временно не работает! Покупка в тгк');
             });
         });
     </script>
