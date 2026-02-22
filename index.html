@@ -3,384 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MonoDLC — абсолютный обход SpookyTime.Funtime</title>
-    <!-- Font Awesome (иконки) -->
+    <title>MonoDLC — абсолютный обход SpookyTime.Funtime (1.16.5)</title>
+    <!-- Font Awesome 6 (иконки) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-        }
-
-        body {
-            background: #0c0b0f;
-            background-image: radial-gradient(circle at 30% 10%, #1e1a29 0%, #07060a 90%);
-            color: #f0f0ff;
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
-
-        /* Эффект свечения (атмосфера Spooky, но мы её обходим) */
-        .glow {
-            position: fixed;
-            top: -20vh;
-            right: -10vw;
-            width: 70vw;
-            height: 70vh;
-            background: radial-gradient(circle, #5f2a7f20 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .glow-left {
-            top: 40vh;
-            left: -15vw;
-            width: 60vw;
-            height: 50vh;
-            background: radial-gradient(circle, #2f4b7a20 0%, transparent 70%);
-            filter: blur(90px);
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 1.8rem 2.5rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Навигация (минимализм) */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            padding-bottom: 2.5rem;
-            border-bottom: 1px solid #3f315130;
-        }
-
-        .logo h1 {
-            font-size: 2.4rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #fff, #cba6ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 10px #8965c0;
-        }
-
-        .logo span {
-            font-size: 0.9rem;
-            font-weight: 400;
-            color: #ab94d4;
-            background: #231d30;
-            padding: 0.2rem 1rem;
-            border-radius: 30px;
-            margin-left: 10px;
-            border: 1px solid #7b57a0;
-        }
-
-        .nav-links a {
-            color: #cbbde2;
-            text-decoration: none;
-            margin-left: 2.2rem;
-            font-weight: 500;
-            transition: 0.2s;
-            font-size: 1.1rem;
-            border-bottom: 2px solid transparent;
-            padding-bottom: 5px;
-        }
-
-        .nav-links a:hover {
-            border-bottom-color: #a974ff;
-            color: white;
-        }
-
-        /* Основной заголовок (уникальное предложение) */
-        .hero {
-            display: grid;
-            grid-template-columns: 1.3fr 0.7fr;
-            gap: 3rem;
-            margin: 5rem 0 7rem 0;
-            align-items: center;
-        }
-
-        .hero h2 {
-            font-size: 3.8rem;
-            font-weight: 800;
-            line-height: 1.2;
-            background: linear-gradient(135deg, #f0eaff, #e3c9ff, #c7a6ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero .accent {
-            color: #bf9aff;
-            background: linear-gradient(145deg, #b77eff, #ffb86b);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-        }
-
-        .hero .badge {
-            font-size: 1rem;
-            background: #222035;
-            padding: 0.5rem 1.5rem;
-            border-radius: 60px;
-            border-left: 5px solid #a36ef0;
-            border-right: 5px solid #a36ef0;
-            display: inline-block;
-            margin: 1rem 0 1.5rem 0;
-            color: #dcc7ff;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: #c6b6ec;
-            max-width: 600px;
-            margin: 1.8rem 0;
-            line-height: 1.6;
-        }
-
-        .hero-image {
-            background: #1d172bb0;
-            border-radius: 40% 60% 50% 50% / 40% 40% 60% 60%;
-            padding: 2rem;
-            border: 2px solid #8a64cf30;
-            box-shadow: 0 30px 40px -10px black, 0 0 100px #4a2d7930 inset;
-            text-align: center;
-        }
-
-        .hero-image i {
-            font-size: 13rem;
-            color: #c7a6ff;
-            filter: drop-shadow(0 0 20px #a36ef0);
-            transform: rotate(2deg);
-            opacity: 0.9;
-        }
-
-        /* Маркетинговые показатели */
-        .stats {
-            display: flex;
-            gap: 3.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 4rem 0 5rem 0;
-        }
-
-        .stat-circle {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #dbbaff;
-            text-shadow: 0 0 20px #a974ff;
-        }
-
-        .stat-label {
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            font-size: 0.9rem;
-            color: #aa96cf;
-        }
-
-        /* Карточки преимуществ — очень подробно и убедительно */
-        .features-title {
-            font-size: 2.8rem;
-            font-weight: 700;
-            text-align: center;
-            margin: 6rem 0 3.5rem 0;
-        }
-
-        .features-title span {
-            background: #19152b;
-            padding: 0.5rem 2.8rem;
-            border-radius: 60px;
-            border: 1px solid #9066d4;
-            box-shadow: 0 0 30px #663d9a40;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.2rem;
-        }
-
-        .feature-card {
-            background: #141024e0;
-            backdrop-filter: blur(5px);
-            border: 1px solid #5f408b60;
-            border-radius: 40px;
-            padding: 2.2rem 2rem;
-            transition: 0.2s;
-            box-shadow: 0 20px 30px -12px #000000d0;
-        }
-
-        .feature-card:hover {
-            border-color: #b180ff;
-            background: #19142e;
-            transform: translateY(-6px);
-            box-shadow: 0 30px 40px -12px #2f1e4e;
-        }
-
-        .feature-icon {
-            font-size: 2.8rem;
-            color: #bb94ff;
-            margin-bottom: 1.2rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card p {
-            color: #c3b1e6;
-            font-size: 1.05rem;
-        }
-
-        /* Секция с полным текстом-продажей (большой текст) */
-        .sales-copy {
-            background: #0d0b17e0;
-            border-radius: 70px;
-            margin: 6rem 0;
-            padding: 4rem 4rem;
-            border: 1px solid #8f6acb60;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 30px 40px -15px #000, 0 0 150px #3a235750 inset;
-        }
-
-        .sales-copy h2 {
-            font-size: 2.6rem;
-            margin-bottom: 2rem;
-            color: #e5d5ff;
-            border-left: 10px solid #b17aff;
-            padding-left: 2rem;
-        }
-
-        .sales-copy p {
-            font-size: 1.2rem;
-            color: #d7c4ff;
-            margin-bottom: 1.5rem;
-            max-width: 1100px;
-        }
-
-        .sales-copy strong {
-            color: white;
-            background: #562f8f;
-            padding: 0.1rem 0.4rem;
-            border-radius: 8px;
-        }
-
-        .sales-copy ul {
-            list-style: none;
-            margin: 2rem 0;
-        }
-
-        .sales-copy li {
-            margin: 1rem 0;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .sales-copy li i {
-            color: #b17aff;
-            font-size: 1.8rem;
-        }
-
-        .price-tag {
-            display: inline-block;
-            background: linear-gradient(145deg, #311f4e, #1d1133);
-            padding: 1.5rem 4rem;
-            border-radius: 90px;
-            font-size: 2.4rem;
-            font-weight: 800;
-            color: #ecd9ff;
-            border: 2px solid #aa7eff;
-            margin: 2.5rem 0 0 0;
-            box-shadow: 0 0 40px #9755ff;
-        }
-
-        /* Секция с кнопкой Telegram (точно по заданию) */
-        .telegram-section {
-            text-align: center;
-            margin: 7rem 0 5rem 0;
-        }
-
-        .telegram-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 20px;
-            background: #2d2a52;
-            background: linear-gradient(145deg, #2d2152, #191330);
-            padding: 1.6rem 5rem;
-            border-radius: 100px;
-            border: 3px solid #3d3070;
-            transition: 0.2s;
-            box-shadow: 0 20px 30px -10px #000, 0 0 30px #7a48d0;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-            font-size: 2rem;
-            font-weight: 600;
-        }
-
-        .telegram-button i {
-            font-size: 3.2rem;
-            color: #41a9e6;
-            filter: drop-shadow(0 0 15px #3fa3e0);
-        }
-
-        .telegram-button:hover {
-            transform: scale(1.06);
-            border-color: #9f7aff;
-            background: #352b5e;
-            box-shadow: 0 25px 40px -8px #6436d0;
-        }
-
-        /* футер */
-        footer {
-            margin-top: 6rem;
-            padding: 2rem 0 3rem 0;
-            border-top: 1px solid #332c4a;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            color: #9683bb;
-        }
-
-        .footer-links a {
-            color: #bfaef0;
-            margin-left: 2.5rem;
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            color: #ddcaff;
-            text-decoration: underline;
-        }
-
-        @media (max-width: 900px) {
-            .hero { grid-template-columns: 1fr; text-align: center; }
-            .hero p { margin-left: auto; margin-right: auto; }
-            .navbar { flex-direction: column; }
-            .nav-links a { margin: 0 1rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="glow"></div>
@@ -389,38 +15,51 @@
         <!-- Шапка -->
         <nav class="navbar">
             <div class="logo">
-                <h1>MonoDLC <span>anti-spooky core</span></h1>
+                <h1>MonoDLC <span>1.16.5 only</span></h1>
             </div>
             <div class="nav-links">
                 <a href="#">Главная</a>
-                <a href="#">Обход</a>
-                <a href="#">Купить</a>
-                <a href="#">Телеграм</a>
+                <a href="obhod.html">Обход</a>
+                <a href="#">Цены</a>
+                <a href="#">Telegram</a>
             </div>
         </nav>
 
-        <!-- Герой (уникальное предложение) -->
+        <!-- Герой -->
         <section class="hero">
             <div>
-                <div class="badge"><i class="fas fa-shield-halved"></i> SpookyTime.Funtime? обходим мгновенно</div>
-                <h2>Единственный чит, который <span class="accent">полностью убирает задержки</span> на SpookyTime</h2>
-                <p>Никаких лагов, никаких флагов — ты играешь, как будто античита вообще нет. Все модули работают синхронно, без лишних тиков.</p>
-                <!-- Кнопка не теряется, но телеграм отдельно снизу — пока просто обозначим CTA -->
-                <a href="#telegram" style="text-decoration: none;"><button class="telegram-button" style="font-size: 1.2rem; padding: 1rem 2.5rem; margin-top: 1rem; background: #2d224a;"><i class="fab fa-telegram"></i> Перейти в Telegram</button></a>
+                <div class="badge"><i class="fas fa-shield-halved"></i> SpookyTime.Funtime? обходим мгновенно (только 1.16.5)</div>
+                <h2>Единственный чит для 1.16.5, который <span class="accent">полностью убирает задержки</span> на SpookyTime</h2>
+                <p>Никаких лагов, никаких флагов — ты играешь, как будто античита вообще нет. Все модули работают синхронно, без лишних тиков. Версия: строго 1.16.5.</p>
+                <!-- Быстрая ссылка на Telegram (дубляж) -->
+                <a href="https://t.me/monodlc" target="_blank" style="text-decoration: none;"><button class="telegram-button" style="font-size: 1.2rem; padding: 1rem 2.5rem; margin-top: 1rem; background: #2d224a;"><i class="fab fa-telegram"></i> Перейти в Telegram</button></a>
             </div>
             <div class="hero-image">
-                <i class="fas fa-ghost"></i> <!-- призрак, намек на Spooky, но перечеркнутый стилем MonoDLC -->
+                <i class="fas fa-ghost"></i>
             </div>
         </section>
 
-        <!-- Статистика доверия -->
+        <!-- Статистика -->
         <div class="stats">
             <div class="stat-circle"><span class="stat-number">0ms</span><div class="stat-label">задержка обхода</div></div>
             <div class="stat-circle"><span class="stat-number">24/7</span><div class="stat-label">рабочие билды</div></div>
-            <div class="stat-circle"><span class="stat-number">#1</span><div class="stat-label">по обходу Spooky</div></div>
+            <div class="stat-circle"><span class="stat-number">#1</span><div class="stat-label">на 1.16.5</div></div>
         </div>
 
-        <!-- Преимущества в карточках (профессионально) -->
+        <!-- === НОВЫЙ ТЕКСТ (КОПИРАЙТИНГ) === -->
+        <div class="intro-block">
+            <p>Представляем вам новое поколение программного обеспечения, созданное для тех, кто не признает компромиссов. Наши обходчики (bypass) работают на опережение, обеспечивая полную невидимость для самых агрессивных систем защиты.</p>
+            
+            <ul>
+                <li><i class="fas fa-bolt"></i> <strong>Молниеносный обход:</strong> Мы гарантируем стабильную работу и успешный bypass всех современных античит-систем, включая Grim, Vulcan, Polar, Matrix и SpookyAC.</li>
+                <li><i class="fas fa-clock"></i> <strong>Технология нулевой задержки:</strong> Архитектура чита построена таким образом, чтобы минимизировать влияние на ваш игровой процесс. Никаких лагов и фризов — только плавный геймплей и мгновенная реакция.</li>
+            </ul>
+            
+            <p>Почувствуйте превосходство технологии, которая работает быстрее, чем защита.</p>
+            <div class="signature">— Команда MonoDLC</div>
+        </div>
+
+        <!-- Преимущества карточками -->
         <div class="features-title">
             <span>Почему MonoDLC — твой единственный выбор</span>
         </div>
@@ -442,15 +81,15 @@
             </div>
             <div class="feature-card">
                 <i class="fas fa-server feature-icon"></i>
-                <h3>Поддержка всех версий</h3>
-                <p>1.8 — 1.21. Spooky стоит на многих серверах? Неважно, MonoDLC адаптируется под версию протокола на лету. Работает даже там, где другие падают.</p>
+                <h3>Сфокусированы на 1.16.5</h3>
+                <p>Мы выбрали самую популярную PvP-версию и довели обход до совершенства. Никакой распыления — только идеальная работа на 1.16.5.</p>
             </div>
         </div>
 
-        <!-- БОЛЬШОЙ ПРОДАЮЩИЙ ТЕКСТ (профессионально, убедительно) -->
+        <!-- Большой продающий текст (исправлен под 1.16.5) -->
         <div class="sales-copy">
-            <h2>Обход SpookyTime.Funtime без компромиссов</h2>
-            <p><strong>MonoDLC</strong> — это результат шести месяцев реверс-инжиниринга античита SpookyTime.Funtime. В отличие от других клиентов, которые лишь маскируют инжект или используют старые методы подмены пакетов, мы переписали ядро взаимодействия с сервером.</p>
+            <h2>Обход SpookyTime.Funtime без компромиссов (версия 1.16.5)</h2>
+            <p><strong>MonoDLC</strong> — это результат шести месяцев реверс-инжиниринга античита SpookyTime.Funtime. В отличие от других клиентов, которые лишь маскируют инжект или используют старые методы подмены пакетов, мы переписали ядро взаимодействия с сервером <strong>специально для версии 1.16.5</strong>.</p>
             <p>Каждый модуль (Aimbot, Triggerbot, Reach, Velocity, ESP) отправляет серверу ровно те данные, которые сервер ожидает от обычного клиента. Никаких «лишних» вычислений, никаких подозрительных паттернов. Мы устранили саму причину задержек — теперь античит не ставит твои действия в «очередь на проверку», потому что они идеально согласованы с тактами сервера.</p>
             <p>Больше не нужно бояться «тим аутов» или внезапных банов через неделю. <strong>MonoDLC прошел стресс-тесты на серверах с максимальными настройками Spooky (конфигурация «Paranoid»)</strong> — 0 банов, 0 подозрений. Ты получаешь преимущество, которое невозможно отличить от реального скилла.</p>
             <ul>
@@ -459,14 +98,56 @@
                 <li><i class="fas fa-check-circle"></i> <strong>Nullify Invalid</strong> — автоматическая подстройка под случайные проверки античита на лету.</li>
                 <li><i class="fas fa-check-circle"></i> <strong>Memory Obfuscation</strong> — чит не оставляет сигнатур в RAM, даже динамический анализ не найдет ни одного паттерна MonoDLC.</li>
             </ul>
-            <p>Мы предлагаем не просто чит, а полноценное программное решение для комфортной игры на любых серверах, использующих SpookyTime.Funtime. Версии для Java Edition 1.8.9 — 1.21 поставляются с единым лаунчером. Вы покупаете доступ в закрытый Telegram-канал, где выходят обновления, и получаете саппорт 24/7.</p>
-            <div class="price-tag">
-                <i class="fas fa-key"></i> Lifetime доступ — $29.90
-            </div>
-            <p style="margin-top: 2rem; color: #b6a1e6;">* действует ограниченное предложение: первые 100 покупателей получают дополнительный месяц приватных билдов.</p>
         </div>
 
-        <!-- ровно по заданию: кнопка с лого телеграмма, переход на t.me/monodlc -->
+        <!-- БЛОК С ТРЕМЯ КОЛОНКАМИ ЦЕН -->
+        <div class="pricing-title">
+            <span>💎 Выбери тариф (1.16.5)</span>
+        </div>
+        <div class="pricing-sub">Доступ к закрытому каналу с читом и обновлениями</div>
+
+        <div class="pricing-grid">
+            <!-- Карточка 1 месяц -->
+            <div class="pricing-card">
+                <div class="pricing-header">1 месяц</div>
+                <div class="pricing-price">150₽</div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Полный обход Spooky</li>
+                    <li><i class="fas fa-check"></i> 0ms задержек</li>
+                    <li><i class="fas fa-check"></i> Поддержка 24/7</li>
+                </ul>
+                <button class="pricing-btn">Купить 1 месяц</button>
+            </div>
+            <!-- Карточка 3 месяца (популярная) -->
+            <div class="pricing-card popular">
+                <div class="pricing-header">3 месяца</div>
+                <div class="pricing-price">200₽</div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Всё из 1 месяца</li>
+                    <li><i class="fas fa-check"></i> Экономия 40%</li>
+                    <li><i class="fas fa-check"></i> Приоритетный саппорт</li>
+                </ul>
+                <button class="pricing-btn">Купить 3 месяца</button>
+            </div>
+            <!-- Карточка Навсегда -->
+            <div class="pricing-card">
+                <div class="pricing-header">Навсегда</div>
+                <div class="pricing-price">299₽</div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Бессрочный доступ</li>
+                    <li><i class="fas fa-check"></i> Все будущие обновления</li>
+                    <li><i class="fas fa-check"></i> Закрытые билды</li>
+                </ul>
+                <button class="pricing-btn">Купить навсегда</button>
+            </div>
+        </div>
+
+        <!-- Фраза ПОД колонками -->
+        <div class="pricing-guarantee">
+            <i class="fas fa-bolt"></i> После покупки клиента вы получаете доступ без лагов и задержки.
+        </div>
+
+        <!-- Кнопка Telegram с прямой ссылкой на t.me/monodlc -->
         <div id="telegram" class="telegram-section">
             <a href="https://t.me/monodlc" target="_blank" class="telegram-button">
                 <i class="fab fa-telegram-plane"></i> Присоединиться к MonoDLC
@@ -474,24 +155,33 @@
             <p style="margin-top: 1.5rem; color: #c1abe1;">Нажимая, ты попадёшь в официальный Telegram-канал. Там — новости, обновления и покупка.</p>
         </div>
 
-        <!-- футер с упоминанием тг -->
+        <!-- Футер -->
         <footer>
-            <div>© 2025 MonoDLC — обход SpookyTime.Funtime на высшем уровне.</div>
+            <div>© 2025 MonoDLC — обход SpookyTime.Funtime на версии 1.16.5</div>
             <div class="footer-links">
-                <a href="#"><i class="fab fa-telegram"></i> t.me/monodlc</a>
+                <a href="https://t.me/monodlc" target="_blank"><i class="fab fa-telegram"></i> t.me/monodlc</a>
                 <a href="#">Политика</a>
                 <a href="#">Поддержка</a>
             </div>
         </footer>
     </div>
 
-    <!-- Маленький скрипт для плавного скролла (необязательно) -->
+    <!-- Скрипт для плавного скролла и демо-уведомления при клике на цены -->
     <script>
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if(target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // демонстрационные алерты для кнопок покупки (прототип)
+        const buyButtons = document.querySelectorAll('.pricing-btn');
+        buyButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('💳 Демо-режим: здесь будет переход на оплату. После покупки вы получите доступ без лагов и задержки.');
             });
         });
     </script>
