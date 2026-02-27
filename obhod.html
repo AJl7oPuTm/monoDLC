@@ -4,399 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MonoDLC — Технология обхода SpookyTime.Funtime (1.16.5)</title>
-    <!-- Font Awesome (для иконок) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* ========== ОБЩИЕ СТИЛИ ========== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
-        }
-
-        body {
-            background: #0a0813;
-            background-image: radial-gradient(circle at 70% 10%, #211b30 0%, #05030a 95%);
-            color: #efedff;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Эффект свечения (задний фон) */
-        .glow-sphere {
-            position: fixed;
-            top: -20vh;
-            left: -10vw;
-            width: 70vw;
-            height: 70vh;
-            background: radial-gradient(circle, #4b2d7a20 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(90px);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .glow-sphere2 {
-            bottom: -10vh;
-            right: -5vw;
-            width: 60vw;
-            height: 60vh;
-            background: radial-gradient(circle, #2b4f7a20 0%, transparent 70%);
-            position: fixed;
-            filter: blur(100px);
-            z-index: 0;
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 2rem 2.5rem;
-            position: relative;
-            z-index: 10;
-            flex: 1;
-        }
-
-        /* ========== НАВИГАЦИЯ ========== */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            padding-bottom: 1.8rem;
-            border-bottom: 1px solid #40375a60;
-            margin-bottom: 2.5rem;
-        }
-
-        .logo h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #ffffff, #dbbaff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .logo span {
-            font-size: 0.85rem;
-            background: #1f1b30;
-            padding: 0.2rem 1rem;
-            border-radius: 40px;
-            border: 1px solid #8b6fcb;
-            color: #b8a2f0;
-            margin-left: 10px;
-        }
-
-        .nav-links a {
-            color: #c5b6f0;
-            text-decoration: none;
-            margin-left: 2rem;
-            font-weight: 500;
-            transition: 0.2s;
-            border-bottom: 2px solid transparent;
-            padding-bottom: 4px;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            border-bottom-color: #b27aff;
-            color: white;
-        }
-
-        /* ========== ЗАГОЛОВОК СТРАНИЦЫ ========== */
-        .page-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin: 2.5rem 0 3rem 0;
-        }
-
-        .page-header i {
-            font-size: 3.2rem;
-            color: #b27aff;
-            filter: drop-shadow(0 0 10px #9a6eff);
-        }
-
-        .page-header h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #f0e4ff, #cfb3ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .page-header p {
-            color: #a693d4;
-            font-size: 1.2rem;
-            margin-top: 0.5rem;
-        }
-
-        /* ========== БЛОК С НОВЫМ ТЕКСТОМ (КОПИРАЙТИНГ) ========== */
-        .intro-block {
-            background: #0f0b22e0;
-            backdrop-filter: blur(8px);
-            border: 2px solid #6b4db4;
-            border-radius: 50px;
-            padding: 2.8rem 3.2rem;
-            margin: 2rem 0 2.5rem 0;
-            box-shadow: 0 30px 40px -15px black;
-        }
-
-        .intro-block p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            color: #dfd2ff;
-        }
-
-        .intro-block strong {
-            color: #fff;
-            background: #563f97;
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
-        }
-
-        .intro-block ul {
-            list-style: none;
-            margin: 2rem 0;
-        }
-
-        .intro-block li {
-            margin: 1.2rem 0;
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            font-size: 1.2rem;
-            background: #18132e;
-            padding: 1rem 2rem;
-            border-radius: 60px;
-            border-left: 6px solid #b27aff;
-        }
-
-        .intro-block li i {
-            color: #f0b34b;
-            font-size: 2rem;
-            width: 2rem;
-        }
-
-        .intro-block .signature {
-            margin-top: 2rem;
-            text-align: right;
-            font-size: 1.3rem;
-            font-style: italic;
-            color: #cbb4ff;
-            border-top: 1px dashed #7f62b0;
-            padding-top: 1.8rem;
-        }
-
-        /* ========== БЛОК С ПОЛНЫМ ОПИСАНИЕМ ОБХОДА ========== */
-        .bypass-card {
-            background: #110e20e0;
-            backdrop-filter: blur(10px);
-            border: 2px solid #624b9b60;
-            border-radius: 60px;
-            padding: 3rem 3.5rem;
-            margin: 2rem 0 4rem 0;
-            box-shadow: 0 40px 50px -20px black, 0 0 120px #442e8040 inset;
-        }
-
-        .bypass-card h3 {
-            font-size: 2.4rem;
-            color: #e5d3ff;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border-left: 8px solid #b27aff;
-            padding-left: 1.8rem;
-        }
-
-        .bypass-card h3 i {
-            color: #dbbaff;
-            font-size: 2.2rem;
-        }
-
-        .bypass-card p {
-            font-size: 1.22rem;
-            color: #d2c0ff;
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-
-        .bypass-card strong {
-            color: white;
-            background: #623c9c;
-            padding: 0.2rem 0.5rem;
-            border-radius: 12px;
-            font-weight: 600;
-        }
-
-        .bypass-card .highlight {
-            background: linear-gradient(145deg, #2d1f47, #1d1332);
-            padding: 1.8rem;
-            border-radius: 40px;
-            border: 1px solid #ad86ea;
-            margin: 2.2rem 0;
-        }
-
-        .bypass-card .highlight i {
-            color: #f0b86b;
-            margin-right: 10px;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin: 3rem 0 1rem 0;
-        }
-
-        .tech-item {
-            background: #1a1530e0;
-            border-radius: 30px;
-            padding: 1.8rem;
-            border: 1px solid #7d5eb460;
-        }
-
-        .tech-item h4 {
-            font-size: 1.8rem;
-            color: #d4b6ff;
-            margin-bottom: 1rem;
-        }
-
-        .tech-item p {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .tech-item i {
-            color: #f5b34b;
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
-        }
-
-        /* ========== БОЛЬШАЯ КНОПКА ОБХОДА (ВЕДЁТ В ТЕЛЕГРАМ) ========== */
-        .obhod-button-container {
-            text-align: center;
-            margin: 4rem 0 5rem 0;
-        }
-
-        .obhod-main-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 25px;
-            background: linear-gradient(145deg, #322559, #1b1238);
-            padding: 2rem 6rem;
-            border-radius: 130px;
-            border: 4px solid #6a48b0;
-            box-shadow: 0 25px 40px -8px #000, 0 0 60px #723fdd;
-            transition: 0.25s;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-            font-size: 2.4rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .obhod-main-btn i {
-            font-size: 4rem;
-            color: #41a9e6;
-            filter: drop-shadow(0 0 20px #3fa3e0);
-        }
-
-        .obhod-main-btn:hover {
-            transform: scale(1.08);
-            border-color: #b27aff;
-            background: #3e2d70;
-            box-shadow: 0 30px 50px -5px #8c4eff;
-        }
-
-        .obhod-hint {
-            margin-top: 1.8rem;
-            font-size: 1.2rem;
-            color: #baa6ec;
-        }
-
-        /* ========== ДОПОЛНИТЕЛЬНЫЙ РАЗДЕЛ (ЧАСТЫЕ ВОПРОСЫ ПО ОБХОДУ) ========== */
-        .faq-bypass {
-            background: #0d0a1b;
-            border-radius: 50px;
-            padding: 2.8rem;
-            margin: 4rem 0;
-            border: 1px solid #5d4a8d;
-        }
-
-        .faq-bypass h3 {
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .faq-item {
-            margin: 1.8rem 0;
-            border-bottom: 1px dashed #634f9a;
-            padding-bottom: 1.5rem;
-        }
-
-        .faq-item h4 {
-            font-size: 1.6rem;
-            color: #e2ceff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .faq-item p {
-            color: #bbaae0;
-            margin-top: 0.8rem;
-            font-size: 1.15rem;
-        }
-
-        /* ========== ФУТЕР ========== */
-        footer {
-            margin-top: 5rem;
-            padding: 2.5rem 0 2rem 0;
-            border-top: 1px solid #382f52;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            color: #8a79b0;
-        }
-
-        .footer-links a {
-            color: #b4a1e6;
-            margin-left: 2rem;
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            color: #e3d0ff;
-            text-decoration: underline;
-        }
-
-        /* Адаптив */
-        @media (max-width: 800px) {
-            .tech-grid { grid-template-columns: 1fr; }
-            .navbar { flex-direction: column; text-align: center; }
-            .nav-links a { margin: 0 1rem; }
-            .bypass-card { padding: 2rem 1.5rem; }
-            .obhod-main-btn { font-size: 1.8rem; padding: 1.5rem 3rem; }
-            .intro-block { padding: 2rem 1.5rem; }
-            .intro-block li { flex-wrap: wrap; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="glow-sphere"></div>
     <div class="glow-sphere2"></div>
 
     <div class="container">
-        <!-- Навигация -->
         <nav class="navbar">
             <div class="logo">
                 <h1>MonoDLC<span>1.16.5 only</span></h1>
@@ -409,7 +24,6 @@
             </div>
         </nav>
 
-        <!-- Заголовок страницы -->
         <div class="page-header">
             <i class="fas fa-shield-halved"></i>
             <div>
@@ -418,7 +32,6 @@
             </div>
         </div>
 
-        <!-- === НОВЫЙ ТЕКСТ (ВСТАВЛЕН ПО ЗАДАНИЮ) === -->
         <div class="intro-block">
             <p>Представляем вам новое поколение программного обеспечения, созданное для тех, кто не признает компромиссов. Наши обходчики (bypass) работают на опережение, обеспечивая полную невидимость для самых агрессивных систем защиты.</p>
             
@@ -431,7 +44,6 @@
             <div class="signature">— Команда MonoDLC</div>
         </div>
 
-        <!-- === ОСНОВНОЙ БЛОК ПРО ОБХОД (BYPASS) === -->
         <div class="bypass-card">
             <h3><i class="fas fa-robot"></i> SpookyTime.Funtime больше не страшен (1.16.5)</h3>
             <p><strong>MonoDLC</strong> использует проактивный метод обхода, который не просто скрывает читерские пакеты, а заставляет античит воспринимать их как легитимные действия ванильного клиента. Мы достигли <strong>нулевой задержки</strong> при проверках <strong>исключительно на версии 1.16.5</strong>, под которую заточены все модули.</p>
@@ -466,7 +78,6 @@
             <p style="margin-top: 2rem;">Все эти технологии объединены в ядре <strong>MonoCore 2.0</strong>, которое специально разработано <strong>только под версию 1.16.5</strong>. Более 4000 часов тестов на серверах с конфигурацией Spooky «Paranoid» — 0 банов. Ты получаешь не просто чит, а полноценный софт для комфортной игры.</p>
         </div>
 
-        <!-- === БОЛЬШАЯ КНОПКА ОБХОД (ссылка на Telegram) === -->
         <div class="obhod-button-container">
             <a href="https://t.me/monodlc" target="_blank" class="obhod-main-btn">
                 <i class="fab fa-telegram"></i> Перейти в Telegram
@@ -476,7 +87,6 @@
             </div>
         </div>
 
-        <!-- Дополнительный блок: частые вопросы про обход -->
         <div class="faq-bypass">
             <h3><i class="fas fa-question-circle"></i> Всё ещё сомневаешься?</h3>
 
@@ -494,13 +104,11 @@
             </div>
         </div>
 
-        <!-- Футер с ссылкой на Telegram -->
         <footer>
             <div>© 2025 MonoDLC — профессиональный обход античита (версия 1.16.5)</div>
             <div class="footer-links">
                 <a href="https://t.me/monodlc" target="_blank"><i class="fab fa-telegram"></i> t.me/monodlc</a>
                 <a href="#">Поддержка</a>
-                <a href="#">Политика</a>
             </div>
         </footer>
     </div>

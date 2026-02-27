@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MonoDLC — абсолютный обход SpookyTime.Funtime (1.16.5)</title>
-    <!-- Font Awesome 6 (иконки) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -20,9 +19,10 @@
             <div class="nav-links">
                 <a href="index.html">Главная</a>
                 <a href="obhod.html">Обход</a>
-                <!-- Добавляем ссылку на якорь #pricing -->
                 <a href="#pricing">Цены</a>
+                <a href="admin.html" id="adminLink" style="display: none;">Админка</a>
                 <a href="https://t.me/monodlc">Telegram</a>
+                <a href="#" class="login-btn" id="loginBtn"><i class="fas fa-user"></i> Вход</a>
             </div>
         </nav>
 
@@ -32,7 +32,6 @@
                 <div class="badge"><i class="fas fa-shield-halved"></i> SpookyTime.Funtime? обходим мгновенно (только 1.16.5)</div>
                 <h2>Единственный чит для 1.16.5, который <span class="accent">полностью убирает задержки</span> на SpookyTime</h2>
                 <p>Никаких лагов, никаких флагов — ты играешь, как будто античита вообще нет. Все модули работают синхронно, без лишних тиков. Версия: строго 1.16.5.</p>
-                <!-- Быстрая ссылка на Telegram (дубляж) -->
                 <a href="https://t.me/monodlc" target="_blank" style="text-decoration: none;"><button class="telegram-button" style="font-size: 1.2rem; padding: 1rem 2.5rem; margin-top: 1rem; background: #2d224a;"><i class="fab fa-telegram"></i> Перейти в Telegram</button></a>
             </div>
             <div class="hero-image">
@@ -47,7 +46,7 @@
             <div class="stat-circle"><span class="stat-number">#1</span><div class="stat-label">на 1.16.5</div></div>
         </div>
 
-        <!-- НОВЫЙ ТЕКСТ (КОПИРАЙТИНГ) -->
+        <!-- Текстовый блок -->
         <div class="intro-block">
             <p>Представляем вам новое поколение программного обеспечения, созданное для тех, кто не признает компромиссов. Наши обходчики (bypass) работают на опережение, обеспечивая полную невидимость для самых агрессивных систем защиты.</p>
             
@@ -60,7 +59,7 @@
             <div class="signature">— Команда MonoDLC</div>
         </div>
 
-        <!-- Преимущества карточками -->
+        <!-- Преимущества -->
         <div class="features-title">
             <span>Почему MonoDLC — твой единственный выбор</span>
         </div>
@@ -68,47 +67,44 @@
             <div class="feature-card">
                 <i class="fas fa-clock feature-icon"></i>
                 <h3>0ms на детект</h3>
-                <p>Мы проанализировали ядро SpookyTime.Funtime и устранили все задержки срабатывания флагов. Твои действия проходят мгновенно, без накопления подозрений.</p>
+                <p>Мы проанализировали ядро SpookyTime.Funtime и устранили все задержки срабатывания флагов.</p>
             </div>
             <div class="feature-card">
                 <i class="fas fa-robot feature-icon"></i>
                 <h3>Анти-античит нового типа</h3>
-                <p>Не просто скрывает читы, а эмулирует ванильное поведение клиента на уровне пакетов. Spooky видит идеального ванильного игрока, даже когда ты используешь полный спектр модулей.</p>
+                <p>Не просто скрывает читы, а эмулирует ванильное поведение клиента на уровне пакетов.</p>
             </div>
             <div class="feature-card">
                 <i class="fas fa-bolt feature-icon"></i>
                 <h3>Молниеносные инжекты</h3>
-                <p>Загрузка чита занимает 0.3 сек. Никаких лишних потоков, всё вшито в основной процесс — невозможность обнаружения по хешам памяти.</p>
+                <p>Загрузка чита занимает 0.3 сек. Никаких лишних потоков.</p>
             </div>
             <div class="feature-card">
                 <i class="fas fa-server feature-icon"></i>
                 <h3>Сфокусированы на 1.16.5</h3>
-                <p>Мы выбрали самую популярную PvP-версию и довели обход до совершенства. Никакой распыления — только идеальная работа на 1.16.5.</p>
+                <p>Мы выбрали самую популярную PvP-версию и довели обход до совершенства.</p>
             </div>
         </div>
 
-        <!-- Большой продающий текст (исправлен под 1.16.5) -->
+        <!-- Большой текст -->
         <div class="sales-copy">
             <h2>Обход SpookyTime.Funtime без компромиссов (версия 1.16.5)</h2>
-            <p><strong>MonoDLC</strong> — это результат шести месяцев реверс-инжиниринга античита SpookyTime.Funtime. В отличие от других клиентов, которые лишь маскируют инжект или используют старые методы подмены пакетов, мы переписали ядро взаимодействия с сервером <strong>специально для версии 1.16.5</strong>.</p>
-            <p>Каждый модуль (Aimbot, Triggerbot, Reach, Velocity, ESP) отправляет серверу ровно те данные, которые сервер ожидает от обычного клиента. Никаких «лишних» вычислений, никаких подозрительных паттернов. Мы устранили саму причину задержек — теперь античит не ставит твои действия в «очередь на проверку», потому что они идеально согласованы с тактами сервера.</p>
-            <p>Больше не нужно бояться «тим аутов» или внезапных банов через неделю. <strong>MonoDLC прошел стресс-тесты на серверах с максимальными настройками Spooky (конфигурация «Paranoid»)</strong> — 0 банов, 0 подозрений. Ты получаешь преимущество, которое невозможно отличить от реального скилла.</p>
+            <p><strong>MonoDLC</strong> — это результат шести месяцев реверс-инжиниринга античита SpookyTime.Funtime.</p>
             <ul>
                 <li><i class="fas fa-check-circle"></i> <strong>SpookyPhase Bypass</strong> — обход проверки на «залипание» углов и рывки.</li>
-                <li><i class="fas fa-check-circle"></i> <strong>TransactionQueue Spoof</strong> — идеальная синхронизация с серверными тиками, нет задержки между отправкой и подтверждением пакета.</li>
-                <li><i class="fas fa-check-circle"></i> <strong>Nullify Invalid</strong> — автоматическая подстройка под случайные проверки античита на лету.</li>
-                <li><i class="fas fa-check-circle"></i> <strong>Memory Obfuscation</strong> — чит не оставляет сигнатур в RAM, даже динамический анализ не найдет ни одного паттерна MonoDLC.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>TransactionQueue Spoof</strong> — идеальная синхронизация с серверными тиками.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Nullify Invalid</strong> — автоматическая подстройка под проверки античита.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Memory Obfuscation</strong> — чит не оставляет сигнатур в RAM.</li>
             </ul>
         </div>
 
-        <!-- БЛОК С ТРЕМЯ КОЛОНКАМИ ЦЕН (ДОБАВЛЯЕМ ID="pricing") -->
+        <!-- Цены -->
         <div id="pricing" class="pricing-title">
             <span>💎 Выбери тариф (1.16.5)</span>
         </div>
         <div class="pricing-sub">Доступ к закрытому каналу с читом и обновлениями</div>
 
         <div class="pricing-grid">
-            <!-- Карточка 1 месяц -->
             <div class="pricing-card">
                 <div class="pricing-header">1 месяц</div>
                 <div class="pricing-price">150₽</div>
@@ -119,7 +115,6 @@
                 </ul>
                 <button class="pricing-btn">Купить 1 месяц</button>
             </div>
-            <!-- Карточка 3 месяца (популярная) -->
             <div class="pricing-card popular">
                 <div class="pricing-header">3 месяца</div>
                 <div class="pricing-price">200₽</div>
@@ -130,7 +125,6 @@
                 </ul>
                 <button class="pricing-btn">Купить 3 месяца</button>
             </div>
-            <!-- Карточка Навсегда -->
             <div class="pricing-card">
                 <div class="pricing-header">Навсегда</div>
                 <div class="pricing-price">299₽</div>
@@ -143,64 +137,55 @@
             </div>
         </div>
 
-        <!-- Фраза ПОД колонками -->
-        <div class="pricing-guarantee">
-            <i class="fas fa-bolt"></i> После покупки клиента вы получаете доступ без лагов и задержки.
-        </div>
-          <!-- ========== НОВЫЙ БЛОК: КОМАНДА MONODLC ========== -->
-          <div class="team-title">
+        <!-- Команда -->
+        <div class="team-title">
             <span>👥 Команда MonoDLC</span>
         </div>
 
         <div class="team-grid">
-            <!-- Карточка 1: monoless -->
             <div class="team-card">
                 <div class="team-avatar">
                     <i class="fas fa-user-astronaut"></i>
                 </div>
                 <h3>monoless</h3>
                 <div class="team-role">создатель чита</div>
-                <p>Главный архитектор ядра MonoCore. Отвечает за полную невидимость и обход SpookyTime.</p>
+                <p>Главный архитектор ядра MonoCore.</p>
                 <div class="team-social">
                     <a href="https://t.me/monodlc"><i class="fab fa-telegram"></i></a>
-                    
                 </div>
             </div>
 
-            <!-- Карточка 2: serfer -->
             <div class="team-card">
                 <div class="team-avatar">
                     <i class="fas fa-laptop-code"></i>
                 </div>
-                <h3>serfer</h3>
+                <h3>Serferrka</h3>
                 <div class="team-role">создатель сайта, бета-тестер</div>
-                <p>Разработал этот сайт и лично тестирует каждый билд на серверах с Spooky.</p>
+                <p>Разработал этот сайт и тестирует билды.</p>
                 <div class="team-social">
                     <a href="https://t.me/monodlc"><i class="fab fa-telegram"></i></a>
-                    
                 </div>
             </div>
 
-            <!-- Карточка 3: fameowner -->
             <div class="team-card">
                 <div class="team-avatar">
                     <i class="fas fa-paint-brush"></i>
                 </div>
-                <h3>fameowner</h3>
-                <div class="team-role">создатель визуалов, бета-тестер</div>
-                <p>Отвечает за ESP, рендер и интерфейс. Делает чит не только мощным, но и красивым.</p>
+                <h3>?</h3>
+                <div class="team-role">?</div>
+                <p>Может, тут будешь ты?</p>
                 <div class="team-social">
                     <a href="https://t.me/monodlc"><i class="fab fa-telegram"></i></a>
-                    
                 </div>
             </div>
         </div>
-        <!-- Кнопка Telegram с прямой ссылкой на t.me/monodlc -->
+        
+        <!-- Telegram -->
         <div id="telegram" class="telegram-section">
             <a href="https://t.me/monodlc" target="_blank" class="telegram-button">
                 <i class="fab fa-telegram-plane"></i> Присоединиться к MonoDLC
             </a>
-            <p style="margin-top: 1.5rem; color: #c1abe1;">Нажимая, ты попадёшь в официальный Telegram-канал. Там — новости, обновления и покупка.</p>
+            <p style="margin-top: 1.5rem; color: #c1abe1;">Нажимая, ты попадёшь в официальный Telegram-канал.</p>
         </div>
 
         <!-- Футер -->
@@ -213,8 +198,101 @@
         </footer>
     </div>
 
-    <!-- Скрипт для плавного скролла и демо-уведомления при клике на цены -->
+    <!-- МОДАЛЬНОЕ ОКНО РЕГИСТРАЦИИ -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i> Регистрация</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Имя пользователя</label>
+                        <input type="text" id="username" required placeholder="Введите никнейм">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Пароль</label>
+                        <input type="password" id="password" required placeholder="Минимум 6 символов">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Подтверждение пароля</label>
+                        <input type="password" id="confirmPassword" required placeholder="Повторите пароль">
+                    </div>
+                    
+                    <!-- Капча -->
+                    <div class="captcha-container">
+                        <div class="captcha-box">
+                            <div class="captcha-equation" id="captchaEquation">5 + 3 = ?</div>
+                            <input type="number" id="captchaInput" placeholder="Введите ответ" required>
+                        </div>
+                        <button type="button" class="refresh-captcha" id="refreshCaptcha">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Прогресс пароля -->
+                    <div class="password-strength">
+                        <div class="strength-bar" id="strengthBar"></div>
+                    </div>
+                    <div class="strength-text" id="strengthText">Сложность пароля: слабый</div>
+                    
+                    <!-- Согласие -->
+                    <div class="terms-check">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">Я согласен с <a href="#">правилами</a></label>
+                    </div>
+                    
+                    <button type="submit" class="register-submit-btn">
+                        <i class="fas fa-check-circle"></i> Зарегистрироваться
+                    </button>
+                </form>
+                <div class="login-redirect">
+                    Уже есть аккаунт? <a href="#" id="showLogin">Войти</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ВХОДА -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-sign-in-alt"></i> Вход</h2>
+                <span class="close-login">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="loginEmail" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Пароль</label>
+                        <input type="password" id="loginPassword" required placeholder="Введите пароль">
+                    </div>
+                    <button type="submit" class="register-submit-btn">
+                        <i class="fas fa-sign-in-alt"></i> Войти
+                    </button>
+                </form>
+                <div class="login-redirect">
+                    Нет аккаунта? <a href="#" id="showRegister">Зарегистрироваться</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Уведомления -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Подключаем скрипты -->
+    <script src="script.js"></script>
     <script>
+        // Плавный скролл для якорей
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -223,7 +301,7 @@
             });
         });
 
-        // демонстрационные алерты для кнопок покупки (прототип)
+        // Кнопки покупки
         const buyButtons = document.querySelectorAll('.pricing-btn');
         buyButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
